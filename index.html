@@ -423,8 +423,8 @@ footer .flinks{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
       <div>
         <b>한이불마을센터</b>
         <p>부산광역시 연제구 고분로113번길 19</p>
-        <p>전화 010-7383-2879</p>
-        <p>이메일 contect@ebool.or.kr</p>
+        <p>전화 051-865-5152</p>
+        <p>이메일 ibulmaeul@eboolmaeul.or.kr</p>
         <p class="muted" style="color:#C6B29A">운영시간 평일 09:00–18:00 (주말·공휴일 휴무)</p>
         <div class="flinks" style="margin-top:12px" id="channels"></div>
       </div>
@@ -465,8 +465,8 @@ const SITE = {
   formLink: "",                                     /* 구글 폼 일반 공유 주소 (버튼용) */
   youtube: "https://www.youtube.com/@%EC%9D%B4%EB%B6%88%EB%A7%88%EC%9D%84TV",
   youtubeName: "이불마을 TV",
-  email: "contect@ebool.or.kr",
-  tel: "010-7383-2879",
+  email: "ibulmaeul@eboolmaeul.or.kr",
+  tel: "051-865-5152",
   bank: ""                                          /* 후원 계좌 개설 후 입력 (비워두면 "준비 중"으로 표시) */
 };
 
@@ -510,13 +510,15 @@ const EXPERIENCE = [
 /* 활동 사진 목록 — 실제 사진과 내용으로 바꿔서 채워 주세요.
    t: 제목 / d: 날짜(또는 한 줄 설명) / c: 분류(전체/스마트팜/돌봄/교육/공동체/공간 중 하나) / s: 부가 설명 */
 const PHOTOS = [
-  {t:"스마트팜 모종 심기", d:"2024.03", c:"스마트팜", s:"주민들과 함께 모종을 심었습니다."},
-  {t:"어르신 돌봄 나눔", d:"2024.04", c:"돌봄", s:"거동이 불편한 어르신 댁을 방문했습니다."},
-  {t:"찾아가는 교육 프로그램", d:"2024.05", c:"교육", s:"아이들과 함께한 체험 교육입니다."},
-  {t:"마을 한마당 잔치", d:"2024.06", c:"공동체", s:"주민이 함께 모여 나눈 시간입니다."},
-  {t:"배산다방 리모델링", d:"2024.07", c:"공간", s:"센터 공간을 새로 단장했습니다."},
-  {t:"고추장 만들기 체험", d:"2024.08", c:"스마트팜", s:"연제마늘고추양념장을 직접 만들어 보았습니다."}
+  {img:"photos/smartfarm-01.jpg", t:"스마트팜 모종 심기", d:"2024.03", c:"스마트팜", s:"주민들과 함께 모종을 심었습니다."},
+  {img:"", t:"어르신 돌봄 나눔", d:"2024.04", c:"돌봄", s:"거동이 불편한 어르신 댁을 방문했습니다."},
+  {img:"", t:"찾아가는 교육 프로그램", d:"2024.05", c:"교육", s:"아이들과 함께한 체험 교육입니다."},
+  {img:"", t:"마을 한마당 잔치", d:"2024.06", c:"공동체", s:"주민이 함께 모여 나눈 시간입니다."},
+  {img:"", t:"배산다방 리모델링", d:"2024.07", c:"공간", s:"센터 공간을 새로 단장했습니다."},
+  {img:"", t:"고추장 만들기 체험", d:"2024.08", c:"스마트팜", s:"연제마늘고추양념장을 직접 만들어 보았습니다."}
 ];
+/* img를 비워두면 "사진 등록 영역" 문구가 대신 표시됩니다.
+   사진 파일은 repo의 photos 폴더에 올린 뒤, 그 파일명을 img에 적으면 됩니다. (예: "photos/smartfarm-01.jpg") */
 
 /* 유튜브 영상 목록 — id에 유튜브 영상 ID(예: youtu.be/뒤에 오는 문자열)를 넣으면 재생 화면이 표시됩니다.
    비워 두면 "유튜브 영상 ID 입력 영역" 문구가 대신 표시됩니다. */
@@ -610,7 +612,7 @@ function pageHome(){
       <div class="sechead"><h2>활동 기록</h2><a href="#/activity/photo">사진·영상 보기</a></div>
       <div class="gal">
         ${PHOTOS.slice(0,3).map(p=>`
-          <div class="gitem"><div class="gthumb">사진 등록 영역</div>
+          <div class="gitem"><div class="gthumb">${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.t)}" loading="lazy">` : '사진 등록 영역'}</div>
           <div class="cap"><b>${esc(p.t)}</b><span>${esc(p.d)} · ${esc(p.c)}</span></div></div>`).join('')}
       </div>
       <div class="stat">
@@ -922,7 +924,7 @@ function pageActivity(tab){
       </div>
       <div class="gal" id="galgrid">
         ${PHOTOS.map(p=>`<div class="gitem" data-cat="${esc(p.c)}">
-          <div class="gthumb">사진 등록 영역</div>
+          <div class="gthumb">${p.img ? `<img src="${esc(p.img)}" alt="${esc(p.t)}" loading="lazy">` : '사진 등록 영역'}</div>
           <div class="cap"><b>${esc(p.t)}</b><span>${esc(p.d)} · ${esc(p.c)}<br>${esc(p.s)}</span></div>
         </div>`).join('')}
       </div>
